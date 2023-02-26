@@ -10,3 +10,13 @@ class Authentication(models.Model):
 
     def __str__(self):
         return self.userName
+
+class Notice(models.Model):
+    title = models.CharField(max_length=50)
+    desc = models.CharField(max_length=300)
+    image = models.ImageField(upload_to = "notice/images", default="")
+
+    def __str__(self):
+        return self.title
+
+        
