@@ -12,6 +12,7 @@ class Authentication(models.Model):
         return self.userName
 
 class Notice(models.Model):
+    date = models.DateField(auto_now_add= True)
     title = models.CharField(max_length=50)
     desc = models.CharField(max_length=300)
     image = models.ImageField(upload_to = "notice/images", default="")

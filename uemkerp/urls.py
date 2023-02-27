@@ -25,5 +25,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include('authentication.urls')),
     path('main/', v1.main, name = "MainPAge"),
-    path('publish/', v1.publish, name = "MainPAge"),
+    path('publish/', v1.publish, name = "PublishPAge"),
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

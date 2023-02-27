@@ -3,6 +3,8 @@ from .models import Authentication, Notice
 
 from django.http import HttpResponse
 
+from .forms import NoticeForm
+from math import ceil
 
 def index(request):
 
@@ -10,31 +12,44 @@ def index(request):
     return render(request,'authentication\login.html')
 
 def main(request):
+    
+        
+    form = NoticeForm()
+    notices=  Notice.objects.all()
+    n = len(notices)
+    nSlides = n//4 + ceil((n/4) - (n//4))
+
+    parms = {'no_of_slides':nSlides, 'range':range(1,nSlides), 'data': notices,'forms':form, 'f_title':"notices[0].title", "f_desc": notices[0].desc }
+
     name = request.POST['user']
     passw = request.POST['password']
     roles = request.POST['role']
-    data = str(name + passw + roles)
-    # return HttpResponse(data)
     try:
         password = str(Authentication.objects.get(userName=name, role=roles).password)
         if passw == password:
+            print("successfull")
            
-            return render(request, f"authentication/{roles}.html")
+            return render(request, f"authentication/{roles}.html",parms)
         
         else:
+            print("fail")
             return HttpResponse("Authentication Failed!")
     except:
         return HttpResponse("<h1>Internal Server Error!</h1>")
     
 def publish(request):
-    not_title = request.POST['notice_title']
-    not_desc = request.POST['notice_desc']
-    not_image = request.POST['filename2']
-    try:
-        add_notice = Notice(title=not_title,desc=not_desc, image=not_image)
-        add_notice.save()
-        return HttpResponse("Submitted!")
-    except:
-        return HttpResponse("Server is Busy")
+    if request.method == "POST":
+        try:
+            form = NoticeForm(request.POST , request.FILES)
+            if form.is_valid():
+                form.save()
+            return HttpResponse("Done")
+        except Exception(e):
+            return HttpResponse("e")
+    
+def ShowNotice(request):
+    pass
+
+
 
     

@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+  <style type="text/css">
+        .col-md-3
+          {
+          display: inline-block;
+          margin-left:-4px;
+          }
+
+        .carousel-indicators .active {
+          background-color: blue;
+            }
+
+        .col-md-3 img{
+
+          width: 255px;
+          height: 355px;
+          }
+
+        body .carousel-indicator li{
+          background-color: blue;
+          }
+
+        body .carousel-indicators{
+          bottom: 0;
+          }
+
+        body .carousel-control-prev-icon,
+        body .carousel-control-next-icon{
+          background-color: blue;
+          }
+
+        body .no-padding{
+           padding-left: 0;
+           padding-right: 0;
+
+          }
+  </style>
+
+  <title>Admin Pannel</title>
+</head>
+
+<body>
+
+  <nav id="navbar-example2" class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <ul class="nav nav-pills">
+
+      <li class="nav-item">
+        <a class="nav-link" href="#profile">Profile</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="#notice">Notice</a>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">Manage
+          Teacher</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#addTeacher">Add Teacher</a>
+          <a class="dropdown-item" href="#removeTeacher">Remove Teacher</a>
+          <div role="separator" class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#viewTeacher">View Teacher</a>
+        </div>
+      </li>
+
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">Manage
+          Student</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#addStudent">Add Student</a>
+          <a class="dropdown-item" href="#removeStudent">Remove Student</a>
+          <div role="separator" class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#viewStudent">View Student</a>
+        </div>
+      </li>
+
+    </ul>
+  </nav>
+  <div data-spy="scroll" data-target="#navbar-example2" data-offset="0" class="container">
+    <h4 id="profile">Profile</h4>
+    <p>Placeholder content for the scrollspy example. You got the finest architecture. Passport stamps, she's
+      cosmopolitan. Fine, fresh, fierce, we got it on lock. Never planned that one day I'd be losing you. She eats your
+      heart out. Your kiss is cosmic, every move is magic. I mean the ones, I mean like she's the one. Greetings loved
+      ones let's take a journey. Just own the night like the 4th of July! But you'd rather get wasted.</p>
+
+
+    <h4 id="notice">Notice</h4>
+    <!-- Adding Notice View -->
+    <!-- Declaring old Notices -->
+
+    <!--        carousel indicators starts from here-->
+
+    <div class="container">
+      <h1>Men Fashion</h1>
+  <div id="demo" class="carousel slide my-3" data-ride="carousel">
+      <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+  
+         {% for i in range %}
+        <li data-target="#demo" data-slide-to="{{i}}" ></li>
+        {% endfor %}
+      </ul>
+  
+      <div class="container carousel-inner no-padding">
+  
+        <div class="carousel-item active">
+          <div class="col-xs-3 col-sm-3 col-md-3">
+            <div class="card" style="width: 18rem;">
+              <img src='/media/{{product.0.image}}' class="card-img-top" alt="...">
+              <div class="card-body">
+                  <h5 class="card-title">{{product.0.product_name}}</h5>
+                  <p class="card-text">{{product.0.desc}}</p>
+                  <a href="#" class="btn btn-primary">Add to Cart</a>
+              </div>
+            </div>
+         </div>
+  
+  
+          {% for i in product|slice:"1:"%}
+          <div class="col-xs-3 col-sm-3 col-md-3">
+            <div class="card" style="width: 18rem;">
+              <img src='/media/{{i.image}}' class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{i.product_name}}</h5>
+                <p class="card-text">{{i.desc}}</p>
+                <a href="#" class="btn btn-primary">Add To Cart</a>
+              </div>
+            </div>
+          </div>
+          {% if forloop.counter|divisibleby:3 and forloop.counter > 0 and not forloop.last %}
+        </div><div class="carousel-item">
+          {% endif %}
+  
+          {% endfor %}
+      </div>
+  
+  
+  
+  </div>
+  </div>
+     
+      <a class="carousel-control-prev" href="#demo" data-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+      </a>
+      <a class="carousel-control-next" href="#demo" data-slide="next">
+          <span class="carousel-control-next-icon"></span>
+      </a>
+  
+  
+   {% endblock %}
+  
+  </div>
+    <!-- ------------------------------------------------------------------------ -->
+
+
+    <p>Placeholder content for the scrollspy example. You got the finest architecture. Passport stamps, she's
+      cosmopolitan. Fine, fresh, fierce, we got it on lock. Never planned that one day I'd be losing you. She eats your
+      heart out. Your kiss is cosmic, every move is magic. I mean the ones, I mean like she's the one. Greetings loved
+      ones let's take a journey. Just own the night like the 4th of July! But you'd rather get wasted.</p>
+    <h4 id="addTeacher">Add Teacher</h4>
+    <p>Placeholder content for the scrollspy example. You got the finest architecture. Passport stamps, she's
+      cosmopolitan. Fine, fresh, fierce, we got it on lock. Never planned that one day I'd be losing you. She eats your
+      heart out. Your kiss is cosmic, every move is magic. I mean the ones, I mean like she's the one. Greetings loved
+      ones let's take a journey. Just own the night like the 4th of July! But you'd rather get wasted.</p>
+    <h4 id="removeTeacher">Remove Teacher</h4>
+    <p>Placeholder content for the scrollspy example. You got the finest architecture. Passport stamps, she's
+      cosmopolitan. Fine, fresh, fierce, we got it on lock. Never planned that one day I'd be losing you. She eats your
+      heart out. Your kiss is cosmic, every move is magic. I mean the ones, I mean like she's the one. Greetings loved
+      ones let's take a journey. Just own the night like the 4th of July! But you'd rather get wasted.</p>
+    <h4 id="viewTeacher">View Teacher</h4>
+    <p>Placeholder content for the scrollspy example. You got the finest architecture. Passport stamps, she's
+      cosmopolitan. Fine, fresh, fierce, we got it on lock. Never planned that one day I'd be losing you. She eats your
+      heart out. Your kiss is cosmic, every move is magic. I mean the ones, I mean like she's the one. Greetings loved
+      ones let's take a journey. Just own the night like the 4th of July! But you'd rather get wasted.</p>
+
+
+    <h4 id="addStudent">Add Student</h4>
+    <p>Placeholder content for the scrollspy example. You got the finest architecture. Passport stamps, she's
+      cosmopolitan. Fine, fresh, fierce, we got it on lock. Never planned that one day I'd be losing you. She eats your
+      heart out. Your kiss is cosmic, every move is magic. I mean the ones, I mean like she's the one. Greetings loved
+      ones let's take a journey. Just own the night like the 4th of July! But you'd rather get wasted.</p>
+    <h4 id="removeStudent">Remove Student</h4>
+    <p>Placeholder content for the scrollspy example. You got the finest architecture. Passport stamps, she's
+      cosmopolitan. Fine, fresh, fierce, we got it on lock. Never planned that one day I'd be losing you. She eats your
+      heart out. Your kiss is cosmic, every move is magic. I mean the ones, I mean like she's the one. Greetings loved
+      ones let's take a journey. Just own the night like the 4th of July! But you'd rather get wasted.</p>
+    <h4 id="viewStudent">View Student</h4>
+    <p>Placeholder content for the scrollspy example. You got the finest architecture. Passport stamps, she's
+      cosmopolitan. Fine, fresh, fierce, we got it on lock. Never planned that one day I'd be losing you. She eats your
+      heart out. Your kiss is cosmic, every move is magic. I mean the ones, I mean like she's the one. Greetings loved
+      ones let's take a journey. Just own the night like the 4th of July! But you'd rather get wasted.</p>
+
+
+
+  </div>
+
+  <!-- declaring forms -->
+
+  <div class="container" style="float: left; width: 15%; padding: 1%;">
+
+    <form action="/publish/" method="post" enctype="multipart/form-data"> {% csrf_token %}
+
+
+      {{forms}}
+
+
+      <button type="submit" class="btn btn-primary" style="margin-top: 2%;">Submit</button>
+    </form>
+
+  </div>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+    crossorigin="anonymous"></script>
+
+</body>
+
+</html>

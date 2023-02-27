@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <style type="text/css">
+        {% block css %} {% endblock %}
+    </style>
+        <title>{% block title %} {% endblock %}</title>
+</head>
+
+<body>
+
+
+     <nav id="navbar-example2" class="navbar navbar-dark bg-dark" style="color: white;">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <ul class="nav nav-pills">
+    
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">Manage
+              Teacher</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#addTeacher">Add Teacher</a>
+              <a class="dropdown-item" href="#removeTeacher">Remove Teacher</a>
+              <a class="dropdown-item" href="#viewTeacher">View Teacher</a>
+            </div>
+          </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">Manage
+                Student</a>
+  
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#addStudent">Add Student</a>
+                <a class="dropdown-item" href="#removeStudent">Remove Student</a>
+           
+                <a class="dropdown-item" href="#viewStudent">View Student</a>
+  
+              </div>
+            </li>
+
+            
+
+          <li class="nav-item">
+            <a class="nav-link" href="#profile">Profile</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#notice">Notice</a>
+          </li>
+    
+          
+    
+    
+        
+        </ul>
+      </nav>
+      <div data-spy="scroll" data-target="#navbar-example2" data-offset="0" class="container">
+        <h4 id="profile">Profile</h4>
+        <p>Placeholder content for the scrollspy example. You got the finest architecture. Passport stamps, she's
+          cosmopolitan. Fine, fresh, fierce, we got it on lock. Never planned that one day I'd be losing you. She eats your
+          heart out. Your kiss is cosmic, every move is magic. I mean the ones, I mean like she's the one. Greetings loved
+          ones let's take a journey. Just own the night like the 4th of July! But you'd rather get wasted.</p>
+    
+    
+        <h4 id="notice">Notice</h4>
+        <hr>
+        {% block body %} {% endblock %}
+        <hr>
+   
+      <h4 id="addTeacher">Add Teacher</h4>
+      <p>Placeholder content for the scrollspy example. You got the finest architecture. Passport stamps, she's
+        cosmopolitan. Fine, fresh, fierce, we got it on lock. Never planned that one day I'd be losing you. She eats your
+        heart out. Your kiss is cosmic, every move is magic. I mean the ones, I mean like she's the one. Greetings loved
+        ones let's take a journey. Just own the night like the 4th of July! But you'd rather get wasted.</p>
+      <h4 id="removeTeacher">Remove Teacher</h4>
+      <p>Placeholder content for the scrollspy example. You got the finest architecture. Passport stamps, she's
+        cosmopolitan. Fine, fresh, fierce, we got it on lock. Never planned that one day I'd be losing you. She eats your
+        heart out. Your kiss is cosmic, every move is magic. I mean the ones, I mean like she's the one. Greetings loved
+        ones let's take a journey. Just own the night like the 4th of July! But you'd rather get wasted.</p>
+      <h4 id="viewTeacher">View Teacher</h4>
+      <p>Placeholder content for the scrollspy example. You got the finest architecture. Passport stamps, she's
+        cosmopolitan. Fine, fresh, fierce, we got it on lock. Never planned that one day I'd be losing you. She eats your
+        heart out. Your kiss is cosmic, every move is magic. I mean the ones, I mean like she's the one. Greetings loved
+        ones let's take a journey. Just own the night like the 4th of July! But you'd rather get wasted.</p>
+  
+  
+      <h4 id="addStudent">Add Student</h4>
+      <p>Placeholder content for the scrollspy example. You got the finest architecture. Passport stamps, she's
+        cosmopolitan. Fine, fresh, fierce, we got it on lock. Never planned that one day I'd be losing you. She eats your
+        heart out. Your kiss is cosmic, every move is magic. I mean the ones, I mean like she's the one. Greetings loved
+        ones let's take a journey. Just own the night like the 4th of July! But you'd rather get wasted.</p>
+      <h4 id="removeStudent">Remove Student</h4>
+      <p>Placeholder content for the scrollspy example. You got the finest architecture. Passport stamps, she's
+        cosmopolitan. Fine, fresh, fierce, we got it on lock. Never planned that one day I'd be losing you. She eats your
+        heart out. Your kiss is cosmic, every move is magic. I mean the ones, I mean like she's the one. Greetings loved
+        ones let's take a journey. Just own the night like the 4th of July! But you'd rather get wasted.</p>
+      <h4 id="viewStudent">View Student</h4>
+      <p>Placeholder content for the scrollspy example. You got the finest architecture. Passport stamps, she's
+        cosmopolitan. Fine, fresh, fierce, we got it on lock. Never planned that one day I'd be losing you. She eats your
+        heart out. Your kiss is cosmic, every move is magic. I mean the ones, I mean like she's the one. Greetings loved
+        ones let's take a journey. Just own the night like the 4th of July! But you'd rather get wasted.</p>
+  
+        
+  
+    </div> 
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

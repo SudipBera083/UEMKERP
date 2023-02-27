@@ -1,43 +1,131 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% extends 'authentication/basic.html' %}
+{% block title %} Admin Page {% endblock %}
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+{% block css %}
+.col-md-3 {
+display: inline-block;
+margin-left: -4px;
+}
 
-    <title>Admin Pannel</title>
-  </head>
-  <body>
-  
+.col-md-3 {
+width: 100%;
+height: auto;
+}
 
-    <!-- Menue -->
 
-    <div class="list-group container" style="width: fit-content; height: 100%; float: left; margin-left: 1%; margin-top: 2%;">
-      <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-      Menue
-      </a>
-      <a href="#" class="list-group-item list-group-item-action">My Profile</a>
-      <a href="#" class="list-group-item list-group-item-action">Add Teacher</a>
-      <a href="#" class="list-group-item list-group-item-action">Remove Teacher</a>
-      <a class="list-group-item list-group-item-action ">View Teacher</a>
 
-      <a href="#" class="list-group-item list-group-item-action">Add Student</a>
-      <a href="#" class="list-group-item list-group-item-action">Remove Student</a>
-      <a class="list-group-item list-group-item-action ">View Student</a>
+body .no-padding {
+padding:3%
+}
+
+.carousel-control-prev-icon {
+background: black no-repeat center center;
+background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8
+8'%3e%3cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3e%3c/svg%3e");
+}
+
+.carousel-control-next-icon {
+background: black no-repeat center center;
+background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8
+8'%3e%3cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3e%3c/svg%3e");
+
+}
+body .carousel-indicators{
+bottom:0;
+}
+
+.carousel-indicators .active{
+background-color: blue;
+}
+
+
+{% endblock css %}
+
+
+{% block body %}
+
+
+<div class="container" >
+  <h2>Publish Your Notice</h2>
+  <div class="container" style=" padding: 1%; margin-bottom: 2%; background-color: black ; color: white;">
+
+    <form action="/publish/" method="post" enctype="multipart/form-data"> {% csrf_token %}
+
+
+      {{forms}}
+
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+  </div>
+
+
+  <h2>Old Notices</h2>
+
+  <div id="demo" class="carousel slide my-3" data-ride="carousel" style="background-color: rgb(170, 127, 255); color: black; height: 2%;">
+    <ul class="carousel-indicators">
+      <li data-target="#demo" data-slide-to="0" class="active"></li>
+
+      {% for i in range %}
+      <li data-target="#demo" data-slide-to="{{i}}"></li>
+      {% endfor %}
+    </ul>
+
+    <!--Slideshow starts here -->
+    <div class="container carousel-inner" >
+
+      <div class="carousel-item active" >
+
+
+        <div class="col-xs-3 col-sm-3 col-md-3"  >
+          <div class="card" style="width: 18rem;">
+            <img src='/media/{{data.0.image}}' class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{f_title}}</h5>
+              <p class="card-text">{{f_desc}}</p>
+
+            </div>
+          </div>
+        </div>
+
+
+        {% for i in data|slice:"1:"%}
+        <div class="col-xs-3 col-sm-3 col-md-3" >
+          <div class="card" style="width: 18rem;">
+            <img src='/media/{{i.image}}' class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{i.title}}</h5>
+              <p class="card-text">{{i.desc}}</p>
+
+            </div>
+          </div>
+        </div>
+
+
+        {% if forloop.counter|divisibleby:3 and forloop.counter > 0 and not forloop.last %}
+      </div>
+      <div class="carousel-item">
+        {% endif %}
+
+        {% endfor %}
+      </div>
 
 
 
     </div>
-    <div class="container" style="float: left; width: fit-content;">
-        {% extends 'authentication/notice.html'%}
+  </div>
+  <!-- left and right controls for the slide -->
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
 
-    </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 
-  </body>
-</html>
+  {% endblock body %}
+  <!-- declaring forms -->
+
+
+</div>
