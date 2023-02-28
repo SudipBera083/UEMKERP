@@ -26,4 +26,7 @@ urlpatterns = [
     path("", include('authentication.urls')),
     path('main/', v1.main, name = "MainPAge"),
     path('publish/', v1.publish, name = "PublishPAge"),
+    path('add_Teacher/', v1.add_Teacher, name = "AddTeacherDetails"),
+
+
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

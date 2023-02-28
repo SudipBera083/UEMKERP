@@ -3,7 +3,7 @@ from .models import Authentication, Notice
 
 from django.http import HttpResponse
 
-from .forms import NoticeForm
+from .forms import NoticeForm, TeacherForm
 from math import ceil
 
 def index(request):
@@ -14,12 +14,14 @@ def index(request):
 def main(request):
     
         
-    form = NoticeForm()
+    notice_form = NoticeForm()
+    teacher_form = TeacherForm()
+
     notices=  Notice.objects.all()
     n = len(notices)
     nSlides = n//4 + ceil((n/4) - (n//4))
 
-    parms = {'no_of_slides':nSlides, 'range':range(1,nSlides), 'data': notices,'forms':form, 'f_title':"notices[0].title", "f_desc": notices[0].desc }
+    parms = {'no_of_slides':nSlides, 'range':range(1,nSlides), 'data': notices,'forms':notice_form, 'f_title':notices[0].title, "f_desc": notices[0].desc , "addTeacher": teacher_form}
 
     name = request.POST['user']
     passw = request.POST['password']
@@ -45,10 +47,22 @@ def publish(request):
                 form.save()
             return HttpResponse("Done")
         except Exception(e):
-            return HttpResponse("e")
+            return HttpResponse(e)
     
-def ShowNotice(request):
-    pass
+def add_Teacher(request):
+    if request.method =='POST':
+        try:
+            teacher_form = TeacherForm(request.POST, request.FILES)
+            
+            if teacher_form.is_valid():
+                teacher_form.save()
+                a = Authentication(userName= request.POST['teacher_userName'], password= request.POST['teacher_password'], role="Teacher")
+                a.save()
+
+
+            return HttpResponse("Done")
+        except Exception as e:
+            return HttpResponse(e)
 
 
 
